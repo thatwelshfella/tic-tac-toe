@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
-import "./App.css";
-import Square from "./components/Square";
 import { selectWinner } from "./logic";
+import Grid from "./views/Grid/Grid";
+
+import Header from "./views/Header/Header";
+
+import styles from  "./App.module.css";
 
 const App = () => {
   const initialState = { player: "Crosses", placement: {}, winner: null };
@@ -20,45 +23,20 @@ const App = () => {
     setPlayer(initialState.player);
   };
 
-  const number = [
-    "one",
-    "two",
-    "three",
-    "four",
-    "five",
-    "six",
-    "seven",
-    "eight",
-    "nine"
-  ];
-
   useEffect(() => {
     setWinner(selectWinner(placement));
   }, [placement]);
 
   return (
     <>
-      <div className="page-container">
+      <div className={styles.pageContainer}>
         <h1>Tic-Tac-Toe</h1>
-        {winner ? (
-          <>
-            <h3>The winner is {winner}</h3>
-            <button onClick={resetGame}>Want to play again?</button>
-          </>
-        ) : (
-          <h3>Current player is: {player}</h3>
-        )}
-        <div className="box-container">
-          {number.map(n => (
-            <Square
-              disabled={winner}
-              key={n}
-              placement={placement}
-              value={n}
-              onClick={handlePlacement}
-            />
-          ))}
-        </div>
+        <Header winner={winner} resetGame={resetGame} player={player} />
+        <Grid
+          winner={winner}
+          placement={placement}
+          handlePlacement={handlePlacement}
+        />
       </div>
     </>
   );
