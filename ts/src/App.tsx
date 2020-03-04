@@ -1,26 +1,45 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import { selectWinner } from "./logic";
+import Grid from "./views/Grid/Grid";
 
-function App() {
+import Header from "./views/Header/Header";
+
+import styles from "./App.module.css";
+
+const App = () => {
+  const initialState = { player: "Crosses", placement: {}, winner: null };
+  const [player, setPlayer] = useState(initialState.player);
+  const [placement, setPlacement] = useState(initialState.placement);
+  const [winner, setWinner] = useState(initialState.winner);
+
+  const handlePlacement = ({ target }) => {
+    setPlacement({ ...placement, [target.value]: player });
+    setPlayer(player === "Crosses" ? "Naughts" : "Crosses");
+  };
+
+  const resetGame = () => {
+    setWinner(initialState.winner);
+    setPlacement(initialState.placement);
+    setPlayer(initialState.player);
+  };
+
+  useEffect(() => {
+    setWinner(selectWinner(placement));
+  }, [placement]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div className={styles.pageContainer}>
+        <h1>Tic-Tac-Toe</h1>
+        <Header winner={winner} resetGame={resetGame} player={player} />
+        <Grid
+          winner={winner}
+          placement={placement}
+          handlePlacement={handlePlacement}
+        />
+      </div>
+    </>
   );
-}
+};
 
 export default App;
