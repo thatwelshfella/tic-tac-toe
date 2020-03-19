@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { selectWinner } from "./logic";
-import Grid from "./views/Grid/Grid";
+import Grid from "./components/Grid/Grid";
+import { ai } from "./ai";
 
-import Header from "./views/Header/Header";
+import Header from "./components/Header/Header";
 
-import styles from  "./App.module.css";
+import styles from "./App.module.css";
 
 const App = () => {
   const initialState = { player: "Crosses", placement: {}, winner: null };
@@ -15,6 +16,7 @@ const App = () => {
   const handlePlacement = ({ target }) => {
     setPlacement({ ...placement, [target.value]: player });
     setPlayer(player === "Crosses" ? "Naughts" : "Crosses");
+    console.log(ai());
   };
 
   const resetGame = () => {

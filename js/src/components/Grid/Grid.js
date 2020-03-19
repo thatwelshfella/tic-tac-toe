@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import Square from "../../components/Square";
+import Square from "../Square/Square";
 import { number } from "./formConfig";
 
 import styles from './Grid.module.css'
