@@ -15,7 +15,7 @@ const Grid = ({ winner, placement, handlePlacement }) => {
           key={n}
           placement={placement}
           value={n}
-          onClick={handlePlacement}
+          onClick={() => handlePlacement(n)}
         />
       ))}
     </div>

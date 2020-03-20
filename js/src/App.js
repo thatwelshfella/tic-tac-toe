@@ -13,10 +13,11 @@ const App = () => {
   const [placement, setPlacement] = useState(initialState.placement);
   const [winner, setWinner] = useState(initialState.winner);
 
-  const handlePlacement = ({ target }) => {
-    setPlacement({ ...placement, [target.value]: player });
-    setPlayer(player === "Crosses" ? "Naughts" : "Crosses");
-    console.log(ai());
+  const handlePlacement = target => {
+    if (placement[target] === undefined) {
+      setPlacement({ ...placement, [target]: player });
+      setPlayer(player === "Crosses" ? "Naughts" : "Crosses");
+    }
   };
 
   const resetGame = () => {
