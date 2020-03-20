@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { selectWinner } from "./logic";
 import Grid from "./components/Grid/Grid";
-import { ai } from "./ai";
 
 import Header from "./components/Header/Header";
 
