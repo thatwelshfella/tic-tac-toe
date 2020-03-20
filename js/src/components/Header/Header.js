@@ -17,9 +17,13 @@ const Header = ({ winner, resetGame, player }) => {
 };
 
 Header.propTypes = {
-  winner: PropTypes.string.isRequired,
+  winner: PropTypes.string,
   player: PropTypes.string.isRequired,
   resetGame: PropTypes.func.isRequired
+};
+
+Header.defaultProps = {
+  winner: ""
 };
 
 export default Header;

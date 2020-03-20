@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import Square from "../Square/Square";
 import { number } from "./formConfig";
 
-import styles from './Grid.module.css'
+import styles from "./Grid.module.css";
 
 const Grid = ({ winner, placement, handlePlacement }) => {
   return (
@@ -22,6 +22,14 @@ const Grid = ({ winner, placement, handlePlacement }) => {
   );
 };
 
-Grid.propTypes = {};
+Grid.propTypes = {
+  winner: PropTypes.string,
+  placement: PropTypes.object.isRequired,
+  handlePlacement: PropTypes.func.isRequired
+};
+
+Grid.defaultProps = {
+  winner: ""
+};
 
 export default Grid;
